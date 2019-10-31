@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+/**
+ * Основные стили
+ **/
+
+html {
+  font-size: 16px;
+  color: $black;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  height: 100%;
+}
+
+.container {
+  @include min-max(320px, 100%, 0);
+  height: 100%;
+}
+
+.wrap {
+  @include min-max(320px, 1170px, 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.blue {
+  color: #0000B7;
+}
+
+.red {
+  color: #DB0012;
+}
+
+.green {
+  color: #007A2A;
+}
+
+.bomb {
+  span {
+    width: 26px;
+    height: 26px;
+    background: url('../img/bomb.svg') center / cover no-repeat;
+  }
+}

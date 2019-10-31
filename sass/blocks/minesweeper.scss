@@ -1,0 +1,69 @@
+.minesweeper {
+  max-width: 500px;
+  margin: 20px auto;
+  width: 100%;
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__start {
+    background: linear-gradient(to bottom, #3366FF, #1939B7);
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px #091A7A;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 20px;
+    transition-duration: 300ms;
+    transition-property: box-shadow;
+    &:hover {
+      background: linear-gradient(to bottom, darken(#3366FF, 10%), darken(#1939B7, 10%));
+      box-shadow: 0 0 10px 1px #091A7A;
+    }
+  }
+  &__timer {
+    font-size: 18px;
+    line-height: 24px;
+    span {
+      display: block;
+      text-align: right;
+      font-weight: 700;
+    }
+  }
+  &__field {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  &__item {
+    background-color: #E0E0E0;
+    border: 1px solid #C1C1C1;
+    padding-bottom: 14.28%;
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 14.28%;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      background-color: #D6D6D6;
+    }
+    span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 700;
+    }
+  }
+  &__item.open {
+    background-color: #E0E0E0;
+    cursor: default;
+  }
+}

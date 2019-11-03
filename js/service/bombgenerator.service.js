@@ -59,10 +59,82 @@ export class BombGeneratorService {
       this.setBomb(field, results);
     } else {
       results.push(`${firstResult}, ${secondResult}`);
-      field[firstResult][secondResult]++;
+      field[firstResult][secondResult] = config.BOMB;
     }
   }
 
+  fillField(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[i].length; j++) {
+        if (
+            this.isNumberOutOfBound(arr, i - 1, j)
+            &&
+            arr[i - 1][j] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+            this.isNumberOutOfBound(arr, i - 1, j + 1)
+            &&
+            arr[i - 1][j + 1] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+            this.isNumberOutOfBound(arr, i - 1, j - 1)
+            &&
+            arr[i - 1][j - 1] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+            this.isNumberOutOfBound(arr, i + 1, j)
+            &&
+            arr[i + 1][j] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+
+            this.isNumberOutOfBound(arr, i + 1, j + 1)
+            &&
+            arr[i + 1][j + 1] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+            this.isNumberOutOfBound(arr, i + 1, j - 1)
+            &&
+            arr[i + 1][j - 1] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+            this.isNumberOutOfBound(arr, i, j - 1)
+            &&
+            arr[i][j - 1] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+        if (
+            this.isNumberOutOfBound(arr, i, j + 1)
+            &&
+            arr[i][j + 1] == config.BOMB
+            &&
+            arr[i][j] !== config.BOMB
+        ) arr[i][j]++;
+      }
+    }
+  }
+
+  isNumberOutOfBound(arr, x, y) {
+    if (arr[x] === undefined) {
+      return false;
+    } else if (arr[x][y] === undefined) {
+     return false;
+    }
+    return true;
+  }
 
   randomInteger(min, max) {
     let rand = min + Math.random() * (max + 1 - min);

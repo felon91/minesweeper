@@ -21,3 +21,5 @@ export const FIELD_GAME = {
   'fieldEight': 14,
   'fieldNine': 15,
 };
+
+export const BOMB = 10;

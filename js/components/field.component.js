@@ -23,6 +23,8 @@ export class FieldComponent extends Component {
   generateField() {
     this.$el.innerHTML = '';
     this.$el.insertAdjacentHTML('afterBegin', drawField());
-    new BombGeneratorService().generationBomb(this.field);
+    const bombGeneratorService = new BombGeneratorService();
+    bombGeneratorService.generationBomb(this.field);
+    bombGeneratorService.fillField(this.field);
   }
 }

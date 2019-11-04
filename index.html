@@ -11,7 +11,11 @@
 	<div class="wrap">
 		<div class="minesweeper">
 			<div class="minesweeper__top">
-				<button class="minesweeper__start">Начать игру</button>
+				<div class="minesweeper__input">
+					<label for="field-size">Размер поля (7 - 15 клеток)</label>
+					<input id="field-size" type="number" max="15" min="7" value="7" name="fieldSize" required>
+					<button class="minesweeper__start">Начать игру</button>
+				</div>
 				<p class="minesweeper__timer">
 					Время игры:
 					<span>0:00:00</span>

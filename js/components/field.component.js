@@ -19,12 +19,12 @@ export class FieldComponent extends Component {
 
     this.field = new Array(countCell).fill(0).map(el => new Array(countCell).fill(0));
     this.generateField(countCell);
-    //Баг
-    if (!FieldComponent.exists) {
-      this.$el.addEventListener('click', this.openCell.bind(this, {'field': this.field}));
-    }
-    FieldComponent.exists = true;
+    this.evt = this.openCell.bind(this);
+    this.$el.addEventListener('click', this.evt);
+  }
 
+  destroy() {
+    this.$el.removeEventListener('click', this.evt);
   }
 
   generateField(countCell) {
@@ -35,13 +35,13 @@ export class FieldComponent extends Component {
     bombGeneratorService.fillField(this.field);
   }
 
-  openCell(options, evt) {
+  openCell(evt) {
     const obj = {
       'el': evt.target,
       'data': evt.target.dataset,
     };
 
-    this.checkCell(options, obj);
+    this.checkCell({field: this.field}, obj);
   }
 
   checkCell(field, params) {

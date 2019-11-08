@@ -22,4 +22,17 @@ export const FIELD_GAME = {
   'fieldNine': 15,
 };
 
+export const CLASS_GAME = {
+  'zero': 'open',
+  'one': ['blue', 'open'],
+  'two': ['blue', 'open'],
+  'three': ['green', 'open'],
+  'four': ['red', 'open'],
+  'five': ['red', 'open'],
+  'six': ['red', 'open'],
+  'seven': ['red', 'open'],
+  'eight': ['red', 'open'],
+  'ten': 'bomb',
+};
+
 export const BOMB = 10;

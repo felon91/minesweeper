@@ -19,6 +19,12 @@ export class FieldComponent extends Component {
 
     this.field = new Array(countCell).fill(0).map(el => new Array(countCell).fill(0));
     this.generateField(countCell);
+    this.evt = this.openCell.bind(this);
+    this.$el.addEventListener('click', this.evt);
+  }
+
+  destroy() {
+    this.$el.removeEventListener('click', this.evt);
   }
 
   generateField(countCell) {
@@ -27,6 +33,71 @@ export class FieldComponent extends Component {
     const bombGeneratorService = new BombGeneratorService();
     bombGeneratorService.generationBomb(this.field);
     bombGeneratorService.fillField(this.field);
-    console.log(this.field);
+  }
+
+  openCell(evt) {
+    const obj = {
+      'el': evt.target,
+      'data': evt.target.dataset,
+    };
+
+    this.checkCell({field: this.field}, obj);
+  }
+
+  checkCell(field, params) {
+    const el = `<span>${field.field[params.data.x][params.data.y]}</span>`;
+    switch (field.field[params.data.x][params.data.y]) {
+      case 0: {
+        params.el.classList.add(config.CLASS_GAME.zero);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 1: {
+        params.el.classList.add(...config.CLASS_GAME.one);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 2: {
+        params.el.classList.add(...config.CLASS_GAME.two);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 3: {
+        params.el.classList.add(...config.CLASS_GAME.three);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 4: {
+        params.el.classList.add(...config.CLASS_GAME.four);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 5: {
+        params.el.classList.add(...config.CLASS_GAME.five);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 6: {
+        params.el.classList.add(...config.CLASS_GAME.six);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 7: {
+        params.el.classList.add(...config.CLASS_GAME.seven);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 8: {
+        params.el.classList.add(...config.CLASS_GAME.eight);
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+      case 10: {
+        params.el.classList.add(config.CLASS_GAME.ten);
+        const el = `<span></span>`;
+        params.el.insertAdjacentHTML('afterBegin', el);
+        break;
+      }
+    }
   }
 }

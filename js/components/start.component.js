@@ -4,6 +4,7 @@ import {FieldComponent} from "./field.component.js";
 export class StartComponent extends Component {
   constructor(cls) {
     super(cls);
+    this.activeField = null;
   }
 
   init() {
@@ -11,6 +12,10 @@ export class StartComponent extends Component {
   }
 
   renderFieldHandler() {
-    const field = new FieldComponent('.minesweeper__field');
+    if (this.activeField) {
+      this.activeField.destroy();
+      delete this.activeField;
+    }
+    this.activeField = new FieldComponent('.minesweeper__field');
   }
 }

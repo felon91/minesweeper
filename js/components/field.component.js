@@ -45,7 +45,10 @@ export class FieldComponent extends Component {
   }
 
   checkCell(field, params) {
+    if (params.el.classList.contains('open') || params.el.tagName != 'DIV') return;
+
     const el = `<span>${field.field[params.data.x][params.data.y]}</span>`;
+
     switch (field.field[params.data.x][params.data.y]) {
       case 0: {
         params.el.classList.add(config.CLASS_GAME.zero);
@@ -96,6 +99,8 @@ export class FieldComponent extends Component {
         params.el.classList.add(config.CLASS_GAME.ten);
         const el = `<span></span>`;
         params.el.insertAdjacentHTML('afterBegin', el);
+
+        alert('GameOver');
         break;
       }
     }

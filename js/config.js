@@ -36,3 +36,7 @@ export const CLASS_GAME = {
 };
 
 export const BOMB = 10;
+
+export const POPUP_MESSAGES = {
+  'end': 'К сожалению Вы проиграли, начать заново ?',
+};

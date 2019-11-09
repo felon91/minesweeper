@@ -1,6 +1,7 @@
 import {Component} from "../core/component.js";
 import {renderField as drawField} from "../templates/field.template.js";
 import {BombGeneratorService} from "../service/bombgenerator.service.js";
+import {PopupComponent} from "../components/popup.component.js";
 import * as config from "../config.js";
 
 export class FieldComponent extends Component {
@@ -99,8 +100,7 @@ export class FieldComponent extends Component {
         params.el.classList.add(config.CLASS_GAME.ten);
         const el = `<span></span>`;
         params.el.insertAdjacentHTML('afterBegin', el);
-
-        alert('GameOver');
+        new PopupComponent('.popup', {'type': 'end', 'fieldComponent': this});
         break;
       }
     }

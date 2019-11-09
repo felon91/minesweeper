@@ -20,4 +20,9 @@ export class StartComponent extends Component {
     this.activeField = new FieldComponent('.minesweeper__field');
     new TimerComponent('.minesweeper__timer');
   }
+
+  stopGame() {
+    this.activeField.destroy();
+    delete this.activeField;
+  }
 }

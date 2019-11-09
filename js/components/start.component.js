@@ -1,5 +1,6 @@
 import {Component} from './../core/component.js';
 import {FieldComponent} from "./field.component.js";
+import {TimerComponent} from "./timer.component.js";
 
 export class StartComponent extends Component {
   constructor(cls) {
@@ -17,5 +18,6 @@ export class StartComponent extends Component {
       delete this.activeField;
     }
     this.activeField = new FieldComponent('.minesweeper__field');
+    new TimerComponent('.minesweeper__timer');
   }
 }

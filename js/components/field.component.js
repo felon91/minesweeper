@@ -21,7 +21,9 @@ export class FieldComponent extends Component {
     this.field = new Array(countCell).fill(0).map(el => new Array(countCell).fill(0));
     this.generateField(countCell);
     this.evt = this.openCell.bind(this);
+    this.evtRightBtn = this.markCell;
     this.$el.addEventListener('click', this.evt);
+    this.$el.addEventListener('contextmenu', this.evtRightBtn);
   }
 
   destroy() {
@@ -35,6 +37,17 @@ export class FieldComponent extends Component {
     bombGeneratorService.generationBomb(this.field);
     bombGeneratorService.fillField(this.field);
   }
+
+  markCell(evt) {
+    evt.preventDefault();
+    let evtTarget = evt.target;
+    if (evt.target.classList.contains('open') || evt.target.parentElement.classList.contains('open')) return;
+    if (evtTarget.tagName == 'SPAN') evtTarget = evtTarget.parentElement;
+    evtTarget.classList.toggle(config.CLASS_GAME.eleven);
+    evtTarget.insertAdjacentHTML('afterBegin', '<span></span>');
+    console.log(this);
+  }
+
 
   openCell(evt) {
     const obj = {

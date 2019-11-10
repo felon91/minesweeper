@@ -33,6 +33,7 @@ export const CLASS_GAME = {
   'seven': ['red', 'open'],
   'eight': ['red', 'open'],
   'ten': 'bomb',
+  'eleven': 'flag',
 };
 
 export const BOMB = 10;

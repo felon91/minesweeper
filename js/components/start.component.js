@@ -5,7 +5,12 @@ import {TimerComponent} from "./timer.component.js";
 export class StartComponent extends Component {
   constructor(cls) {
     super(cls);
-    this.activeField = null;
+
+    if(StartComponent.exists) {
+      return StartComponent.instance;
+    }
+    StartComponent.instance = this;
+    StartComponent.exists = true;
   }
 
   init() {
@@ -19,10 +24,5 @@ export class StartComponent extends Component {
     }
     this.activeField = new FieldComponent('.minesweeper__field');
     new TimerComponent('.minesweeper__timer');
-  }
-
-  stopGame() {
-    this.activeField.destroy();
-    delete this.activeField;
   }
 }

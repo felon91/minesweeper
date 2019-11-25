@@ -49,6 +49,7 @@ export class BombGeneratorService {
       this.setBomb(arr, results);
     }
 
+    return countBomb;
   }
 
   setBomb(field, results) {

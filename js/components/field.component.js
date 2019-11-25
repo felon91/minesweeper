@@ -17,7 +17,7 @@ export class FieldComponent extends Component {
     } else if (countCell <= config.FIELD_GAME.fieldOne) {
       countCell = config.FIELD_GAME.fieldOne;
     }
-
+    this.countBomb = null;
     this.field = new Array(countCell).fill(0).map(el => new Array(countCell).fill(0));
     this.generateField(countCell);
     this.evt = this.openCell.bind(this);
@@ -28,14 +28,16 @@ export class FieldComponent extends Component {
 
   destroy() {
     this.$el.removeEventListener('click', this.evt);
+    this.$el.removeEventListener('contextmenu', this.evtRightBtn);
   }
 
   generateField(countCell) {
     this.$el.innerHTML = '';
     this.$el.insertAdjacentHTML('afterBegin', drawField(countCell));
     const bombGeneratorService = new BombGeneratorService();
-    bombGeneratorService.generationBomb(this.field);
+    this.countBomb = bombGeneratorService.generationBomb(this.field);
     bombGeneratorService.fillField(this.field);
+    return this.countBomb;
   }
 
   markCell(evt) {
@@ -45,7 +47,6 @@ export class FieldComponent extends Component {
     if (evtTarget.tagName == 'SPAN') evtTarget = evtTarget.parentElement;
     evtTarget.classList.toggle(config.CLASS_GAME.eleven);
     evtTarget.insertAdjacentHTML('afterBegin', '<span></span>');
-    console.log(this);
   }
 
 
@@ -56,6 +57,7 @@ export class FieldComponent extends Component {
     };
 
     this.checkCell({field: this.field}, obj);
+    this.isWinner(this.$el);
   }
 
   checkCell(field, params) {
@@ -116,6 +118,14 @@ export class FieldComponent extends Component {
         new PopupComponent('.popup', {'type': 'end', 'fieldComponent': this});
         break;
       }
+    }
+  }
+
+  isWinner(field) {
+    let countOpenCell = field.querySelectorAll('div.open').length;
+    let needToOpen = field.querySelectorAll('div').length - this.countBomb;
+    if (countOpenCell === needToOpen) {
+      new PopupComponent('.popup', {'type': 'winner', 'fieldComponent': this});
     }
   }
 }

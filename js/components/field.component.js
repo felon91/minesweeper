@@ -37,7 +37,6 @@ export class FieldComponent extends Component {
     const bombGeneratorService = new BombGeneratorService();
     this.countBomb = bombGeneratorService.generationBomb(this.field);
     bombGeneratorService.fillField(this.field);
-    return this.countBomb;
   }
 
   markCell(evt) {

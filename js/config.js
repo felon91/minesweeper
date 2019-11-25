@@ -1,5 +1,5 @@
 export const COUNT_BOMB = {
-  'levelOne': 15,
+  'levelOne': 5,
   'levelTwo': 20,
   'levelThree': 25,
   'levelFour': 30,
@@ -40,4 +40,5 @@ export const BOMB = 10;
 
 export const POPUP_MESSAGES = {
   'end': 'К сожалению Вы проиграли, начать заново ?',
+  'winner': 'Ура, вы победили! Хотите сыграть еще раз?',
 };

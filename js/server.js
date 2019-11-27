@@ -1,46 +1,22 @@
+const express = require('express');
+const path = require('path');
+const statsRouter = require('./routes/stats');
 const mongoose = require('mongoose');
+
+const port = process.env.PORT || 3030;
+const clientPath = path.join(__dirname, './../');
+const app = express();
+
+app.use('/api/stats', statsRouter);
+app.use(express.static(clientPath));
+
+app.listen(port, () => {
+  console.log(`server has been started on port ${port}`);
+});
+
 
 mongoose.connect('mongodb://localhost/minesweeperStats',  {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
       console.log('started');
     })
     .catch((e => console.log(e)));
-
-const Schema = mongoose.Schema;
-
-const StatsSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  timeResult: {
-    type: Number,
-    required: true
-  }
-});
-
-const statsModel = mongoose.model('statistics', StatsSchema);
-
-const statistics = new statsModel({
-  name: 'Денис',
-  timeResult: 0
-});
-
-// statsModel.find({name: 'Денис'})
-//     .limit(1)
-//     .then(persons => {
-//       statsModel.find({id: persons._id}).deleteOne().then(() => {
-//         console.log('removed');
-//       });
-//     }
-// );
-
-statsModel.find({}).then(persons => {
-  console.log(persons);
-});
-
-// statistics.save()
-//     .then(user => {
-//       console.log(user);
-//     })
-//     .catch(e => console.log(e));

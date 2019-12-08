@@ -61,7 +61,7 @@ export class FieldComponent extends Component {
     this.isWinner(this.$el);
   }
 
- async checkCell(field, params) {
+  checkCell(field, params) {
     if (params.el.classList.contains('open') || params.el.tagName != 'DIV') return;
 
     const el = `<span>${field.field[params.data.x][params.data.y]}</span>`;
@@ -117,7 +117,6 @@ export class FieldComponent extends Component {
         const el = `<span></span>`;
         params.el.insertAdjacentHTML('afterBegin', el);
         new PopupComponent('.popup', {'type': 'end', 'fieldComponent': this});
-        new StatsComponent('.stats').getStatsData();
         break;
       }
     }

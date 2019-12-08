@@ -15,6 +15,7 @@
 				<div class="minesweeper__input">
 					<label for="field-size">Размер поля (7 - 15 клеток)</label>
 					<input id="field-size" type="number" max="15" min="7" value="7" name="fieldSize" required>
+					<input class="minesweeper__input-name" id="userName" type="text" name="userName" placeholder="Ваше имя">
 					<button class="minesweeper__start">Начать игру</button>
 				</div>
 				<p class="minesweeper__timer">
@@ -24,6 +25,7 @@
 			</div>
 			<div class="minesweeper__field"></div>
 		</div>
+		<div class="stats"></div>
 	</div>
 </div>
 <script type="module" src="js/index.js"></script>

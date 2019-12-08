@@ -8,7 +8,7 @@ const StatsSchema = new Schema({
     required: true
   },
   timeResult: {
-    type: Number,
+    type: String,
     required: true
   }
 });

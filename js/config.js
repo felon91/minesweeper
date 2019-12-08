@@ -1,5 +1,5 @@
 export const COUNT_BOMB = {
-  'levelOne': 5,
+  'levelOne': 1,
   'levelTwo': 20,
   'levelThree': 25,
   'levelFour': 30,

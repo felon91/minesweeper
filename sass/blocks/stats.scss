@@ -1,0 +1,50 @@
+.stats {
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.stats__title {
+  text-align: center;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+.stats__block {
+  border: 1px solid #C1C1C1;
+}
+
+.stats__table {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  tr {
+    border-bottom: 1px solid #C1C1C1;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  td {
+    width: 70%;
+    padding: 10px;
+    border-right: 1px solid #C1C1C1;
+    &:last-child {
+      width: 30%;
+      text-align: right;
+      border-right: none;
+    }
+  }
+
+  th {
+    width: 70%;
+    padding: 10px;
+    text-align: left;
+    &:last-child {
+      width: 30%;
+      text-align: right;
+      border-right: none;
+    }
+  }
+}

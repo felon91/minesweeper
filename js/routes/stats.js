@@ -10,9 +10,9 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const statsData = {
     name: req.body.name,
-    time: req.body.time,
-  }
-  const stat = new Post(statsData);
+    timeResult: req.body.timeResult,
+  };
+  const stat = new Stats(statsData);
   await stat.save();
   res.status(201).json(stat);
 });

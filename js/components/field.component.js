@@ -2,6 +2,8 @@ import {Component} from "../core/component.js";
 import {renderField as drawField} from "../templates/field.template.js";
 import {BombGeneratorService} from "../service/bombgenerator.service.js";
 import {PopupComponent} from "../components/popup.component.js";
+import {StatsComponent} from "../components/stats.component.js";
+import {TimerComponent} from "./timer.component.js";
 import * as config from "../config.js";
 
 export class FieldComponent extends Component {
@@ -59,7 +61,7 @@ export class FieldComponent extends Component {
     this.isWinner(this.$el);
   }
 
-  checkCell(field, params) {
+ async checkCell(field, params) {
     if (params.el.classList.contains('open') || params.el.tagName != 'DIV') return;
 
     const el = `<span>${field.field[params.data.x][params.data.y]}</span>`;
@@ -115,6 +117,7 @@ export class FieldComponent extends Component {
         const el = `<span></span>`;
         params.el.insertAdjacentHTML('afterBegin', el);
         new PopupComponent('.popup', {'type': 'end', 'fieldComponent': this});
+        new StatsComponent('.stats').getStatsData();
         break;
       }
     }
@@ -125,6 +128,13 @@ export class FieldComponent extends Component {
     let needToOpen = field.querySelectorAll('div').length - this.countBomb;
     if (countOpenCell === needToOpen) {
       new PopupComponent('.popup', {'type': 'winner', 'fieldComponent': this});
+      const userName = document.querySelector('#userName').value || 'Гость';
+      const data = {
+        name: userName,
+        timeResult: TimerComponent.instance.$el.querySelector('span').textContent
+      };
+      console.log(data);
+      new StatsComponent('.stats').addStatsData(data);
     }
   }
 }
